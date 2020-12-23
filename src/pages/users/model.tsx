@@ -1,17 +1,26 @@
 import { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
 
-const IndexModel = {
+interface UserModelType {
+	namespace: 'users';
+	state: {};
+	reducers: {
+		getList: Reducer;
+	};
+	effects: {};
+	subscriptions: {
+		setup: Subscription;
+	};
+}
+
+const UserModel: UserModelType = {
 	namespace: 'users',
 
 	state: {
 		name: '',
 	},
 
-	effects: {
-		*query({ payload }, { call, put }) {},
-	},
 	reducers: {
-		save(state, action) {
+		getList(state, action) {
 			const data = [
 				{
 					key: '1',
@@ -35,20 +44,18 @@ const IndexModel = {
 					tags: ['cool', 'teacher'],
 				},
 			];
-
 			return data;
 		},
-		// 启用 immer 之后
-		// save(state, action) {
-		//   state.name = action.payload;
-		// },
+	},
+	effects: {
+		*getList({ type, payload }, effects) {},
 	},
 	subscriptions: {
 		setup({ dispatch, history }) {
 			return history.listen(({ pathname }) => {
 				if (pathname === '/users') {
 					dispatch({
-						type: 'save',
+						type: 'getList',
 					});
 				}
 			});
@@ -56,4 +63,4 @@ const IndexModel = {
 	},
 };
 
-export default IndexModel;
+export default UserModel;
