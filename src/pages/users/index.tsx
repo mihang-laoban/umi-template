@@ -59,6 +59,7 @@ const index = ({ users }) => {
 	);
 };
 
-export default connect(({ users }) => {
+const mapStateToProps = ({ users }) => {
 	return { users };
-})(index);
+};
+export default connect(mapStateToProps)(index);

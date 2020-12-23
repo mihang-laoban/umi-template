@@ -4,5 +4,8 @@ export default defineConfig({
 	nodeModulesTransform: {
 		type: 'none',
 	},
-	routes: [{ path: '/users', component: '@/pages/users/index' }],
+	routes: [
+		{ path: '/users', component: '@/pages/users/index' },
+		{ path: '/', component: '@/pages/index' },
+	],
 });
