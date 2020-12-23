@@ -54,13 +54,11 @@ const index = ({ users }) => {
 
 	return (
 		<div className="list-table">
-			<Table columns={columns} dataSource={users} />
+			<Table columns={columns} dataSource={users.data} />
 		</div>
 	);
 };
 
 export default connect(({ users }) => {
-	return {
-		users,
-	};
+	return { users };
 })(index);
